@@ -1,0 +1,22 @@
+{
+    "name"          : "neolao/neolao",
+    "type"          : "library",
+    "description"   : "Neolao library for PHP 5.4+",
+    "license"       : "MIT",
+    "authors"       : 
+    [
+        {
+            "name"      : "neolao",
+            "email"     : "contact@neolao.com",
+            "homepage"  : "http://neolao.com"
+        }
+    ],
+    "require"       : 
+    {
+        "php"           : ">=5.4"
+    },
+    "autoload"      :
+    {
+        "psr-0"         : {"": ["classes/"]}
+    }
+}
