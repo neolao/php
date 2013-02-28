@@ -20,7 +20,7 @@ use \Neolao\Site\Helper\View\AbstractHelper;
  *
  * $helper->generated   = true;
  * $fileUrl             = $helper->getFileUrl('screen.css');
- * echo $fileUrl; // http://site.tld/style/generated-style/a75ca72342d875fb6d50b03e4a6dd5a4/stylesheets/screen.css
+ * echo $fileUrl; // http://site.tld/style/generated-styles/a75ca72342d875fb6d50b03e4a6dd5a4/stylesheets/screen.css
  */
 class StylesheetHelper extends AbstractHelper
 {
@@ -77,6 +77,7 @@ class StylesheetHelper extends AbstractHelper
                 return $fileUrl;
             }
             $version = file_get_contents($versionPath);
+            $version = trim($version);
 
             // Generated URL
             $fileUrl = $this->baseUrl . DIRECTORY_SEPARATOR . 'generated-styles' . DIRECTORY_SEPARATOR . $version . DIRECTORY_SEPARATOR . 'stylesheets' . DIRECTORY_SEPARATOR . $fileName;
