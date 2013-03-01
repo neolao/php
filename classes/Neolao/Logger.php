@@ -42,6 +42,8 @@ class Logger extends AbstractLogger
 
     /**
      * Add a listener
+     *
+     * @param   ListenerInterface   $listener   Listener instance
      */
     public function addListener(ListenerInterface $listener)
     {
