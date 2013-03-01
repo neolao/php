@@ -23,6 +23,6 @@
         "psr-0": {
             ""              : ["classes/", "lib/"],
             "\\CSSmin"      : "lib/cssmin.php"
-        },
+        }
     }
 }
