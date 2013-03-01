@@ -13,4 +13,4 @@ script: php mageekguy.atoum.phar
 
 notifications:
   email:
-      - contact@neolao.com
+    - contact@neolao.com

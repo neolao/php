@@ -11,15 +11,18 @@
             "homepage"  : "http://neolao.com"
         }
     ],
-    "require"       : 
+    "require":
     {
         "php"                   : ">=5.4",
         "psr/log"               : "*",
         "mustache/mustache"     : "2.1.*",
         "richthegeek/phpsass"   : "dev-master"
     },
-    "autoload"      :
+    "autoload":
     {
-        "psr-0"         : {"": ["classes/", "lib/"]}
+        "psr-0": {
+            ""              : ["classes/", "lib/"],
+            "\\CSSmin"      : "lib/cssmin.php"
+        },
     }
 }

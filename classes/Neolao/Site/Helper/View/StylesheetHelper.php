@@ -4,8 +4,6 @@
  */
 namespace Neolao\Site\Helper\View;
 
-//require_once __DIR__.'/../../../../../lib/cssmin.php';
-require_once 'cssmin.php';
 use \Neolao\Logger;
 use \Neolao\Util\FileSystem;
 use \Neolao\Site\Helper\View\AbstractHelper;
