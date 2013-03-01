@@ -11,3 +11,6 @@ before_script:
 
 script: php mageekguy.atoum.phar
 
+notifications:
+  email:
+      - contact@neolao.com
