@@ -4,8 +4,10 @@
  */
 namespace Neolao\Site\Helper\View;
 
-
+//require_once __DIR__.'/../../../../../lib/cssmin.php';
+require_once 'cssmin.php';
 use \Neolao\Logger;
+use \Neolao\Util\FileSystem;
 use \Neolao\Site\Helper\View\AbstractHelper;
 
 /**
@@ -72,6 +74,7 @@ class StylesheetHelper extends AbstractHelper
 
     /**
      * Get the file URL of the specified file name
+     * (access point of the view helper)
      *
      * @param   string  $fileName   The file name
      * @return  string              The file URL
@@ -94,7 +97,7 @@ class StylesheetHelper extends AbstractHelper
         $fileUrl    = $this->baseUrl . DIRECTORY_SEPARATOR . 'stylesheets' . DIRECTORY_SEPARATOR . $fileName;
 
         // If specified, pre-compile the original file
-        if ($this->sass) {
+        if (!$this->generated && $this->sass) {
             $sassFilePath = $this->basePath . DIRECTORY_SEPARATOR . 'sass' . DIRECTORY_SEPARATOR . pathinfo($fileName, PATHINFO_FILENAME) . '.scss';
             $this->_sassCompile($sassFilePath, $filePath);
         }
@@ -119,6 +122,67 @@ class StylesheetHelper extends AbstractHelper
     }
 
     /**
+     * Generate a snapshot of the style
+     */
+    public function generate()
+    {
+        // Get CSS files
+        $stylesheetsDirectory = $this->basePath . DIRECTORY_SEPARATOR . 'stylesheets';
+        $filePaths = glob($stylesheetsDirectory . DIRECTORY_SEPARATOR . '*.css');
+
+        // If specified, pre-compile the original files
+        if ($this->sass) {
+            foreach ($filePaths as $filePath) {
+                $sassFilePath = $this->basePath . DIRECTORY_SEPARATOR . 'sass' . DIRECTORY_SEPARATOR . pathinfo($filePath, PATHINFO_FILENAME) . '.scss';
+                $this->_sassCompile($sassFilePath, $filePath);
+            }
+        }
+
+        // Unify the original files
+        // They must be readable
+        $unified = '';
+        foreach ($filePaths as $filePath) {
+            if (!is_readable($filePath)) {
+                $logger = Logger::getInstance();
+                $logger->warning('The file ' . $filePath . ' is not readable');
+                return;
+            }
+            $fileContent = file_get_contents($filePath);
+            $unified .= $fileContent;
+        }
+
+        // Get the checksum
+        $checksum = md5($unified);
+
+        // Copy the entire style into a new directory
+        // If the directory already exists, then do nothing
+        $snapshotDirectory = $this->basePath . DIRECTORY_SEPARATOR . 'generated-styles' . DIRECTORY_SEPARATOR . $checksum;
+        if (is_dir($snapshotDirectory)) {
+            return;
+        }
+        mkdir($snapshotDirectory, 0777 - umask(), true);
+        FileSystem::copyDirectory($this->basePath . DIRECTORY_SEPARATOR . 'stylesheets', $snapshotDirectory . DIRECTORY_SEPARATOR . 'stylesheets');
+
+        // Minify
+        $compressor = new \CSSmin();
+        $newFilePaths = glob($snapshotDirectory . DIRECTORY_SEPARATOR . 'stylesheets' . DIRECTORY_SEPARATOR . '*.css');
+        foreach ($newFilePaths as $newFilePath) {
+            $newFileContent = file_get_contents($newFilePath);
+            $minified = $compressor->run($newFileContent);
+            file_put_contents($newFilePath, $minified);
+        }
+
+        // Save the version
+        $versionPath = $this->basePath . DIRECTORY_SEPARATOR . 'generated-styles' . DIRECTORY_SEPARATOR . 'version.txt';
+        if (file_exists($versionPath) && !is_writable($versionPath)) {
+            $logger = Logger::getInstance();
+            $logger->warning('The file ' . $versionPath . ' is not writable');
+            return;
+        }
+        file_put_contents($versionPath, $checksum);
+    }
+
+    /**
      * Compile the file with SASS
      *
      * @param   string  $sassFilePath   The SASS file path
@@ -126,7 +190,7 @@ class StylesheetHelper extends AbstractHelper
      */
     protected function _sassCompile($sassFilePath, $filePath)
     {
-        // The compiled file path must be writable
+        // The compiled file must be writable
         if (!is_writable($filePath)) {
             $logger = Logger::getInstance();
             $logger->warning('The file ' . $filePath . ' is not writable');
