@@ -36,6 +36,9 @@ class FileListener implements ListenerInterface
 
     /**
      * Constructor
+     *
+     * @param   string      $filePath       The file path
+     * @param   string      $level          The filtered level
      */
     public function __construct($filePath, $level = null)
     {
