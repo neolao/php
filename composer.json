@@ -2,7 +2,7 @@
     "name"          : "neolao/neolao",
     "type"          : "library",
     "description"   : "Neolao library for PHP 5.4+",
-    "license"       : "MIT",
+    "license"       : "MPL-2.0",
     "authors"       : 
     [
         {
