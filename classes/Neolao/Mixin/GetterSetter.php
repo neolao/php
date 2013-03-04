@@ -41,9 +41,9 @@ trait GetterSetter
         if (method_exists($this, "get_$name")) {
             return $this->{"get_$name"}();
         } else if (method_exists($this, "set_$name")) {
-            throw new Exception("Writeonly property $name");
+            throw new \Exception("Writeonly property $name");
         } else {
-            throw new Exception("Undefined property $name");
+            //throw new \Exception("Undefined property $name");
         }
     }
 
@@ -58,9 +58,9 @@ trait GetterSetter
         if (method_exists($this, "set_$name")) {
             $this->{"set_$name"}($value);
         } else if (method_exists($this, "get_$name")) {
-            throw new Exception("Readonly property $name");
+            throw new \Exception("Readonly property $name");
         } else {
-            throw new Exception("Undefined property $name");
+            //throw new \Exception("Undefined property $name");
         }
     }
 
