@@ -177,8 +177,7 @@ class BasicCookie
         if (!is_null($this->_currentUser)) {
             $identity   = $this->getIdentity($user);
             $sessionId  = $this->getSessionId($user);
-            setcookie($this->_identityKey, $identity, $this->_cookieExpire, $this->_cookiePath, $this->_cookieDomain, $this->_cookieSecure, $this->_cookieHttpOnly);
-            setcookie($this->_sessionKey, $sessionId, $this->_cookieExpire, $this->_cookiePath, $this->_cookieDomain, $this->_cookieSecure, $this->_cookieHttpOnly);
+            $this->setIdentity($identity, $sessionId);
         } else {
             setcookie($this->_identityKey, '', -1, $this->_cookiePath);
             setcookie($this->_sessionKey, '', -1, $this->_cookiePath);
