@@ -319,9 +319,9 @@ class Site
      * @param   string  $routeName          Route name
      * @param   array   $parameters         Parameters
      */
-    public function redirect($routeName, $parameters = array())
+    public function redirect($routeName, $parameters = [])
     {
-        $url = $this->getLink($routeName, $parameters);
+        $url = $this->request->reverseRoute($routeName, $parameters);
         header('Pragma: no-cache');
         header('Expires: 0');
         header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');

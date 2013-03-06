@@ -171,7 +171,7 @@ abstract class Controller
      * @param   string  $routeName          Route name
      * @param   array   $parameters         Parameters
      */
-    public function redirect($routeName, $parameters = array())
+    public function redirect($routeName, $parameters = [])
     {
         $this->site->redirect($routeName, $parameters);
     }
