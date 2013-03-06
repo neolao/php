@@ -160,7 +160,7 @@ class Request
      * @param   array   $parameters         Parameters
      * @return  string                      Reverse path
      */
-    public function reverseRoute($routeName, $parameters)
+    public function reverseRoute($routeName, $parameters = [])
     {
         $result = '';
         

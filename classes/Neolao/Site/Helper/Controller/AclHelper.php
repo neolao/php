@@ -29,7 +29,7 @@ class AclHelper extends AbstractHelper
     /**
      * Get the ACL instance
      *
-     * @return  \Neolao\Acl
+     * @return  \Neolao\Acl         ACL instance
      */
     public function main()
     {

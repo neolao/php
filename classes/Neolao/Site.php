@@ -341,6 +341,8 @@ class Site
         foreach ($this->_controllerHelpers as $key => $helper) {
             $controller->registerHelper($key, $helper);
         }
+
+        $controller->registerHelperClass('link', '\\Neolao\\Site\\Helper\\Controller\\LinkHelper');
     }
 
     /**
@@ -355,6 +357,6 @@ class Site
             $view->registerHelper($key, $helper);
         }
 
-        $view->registerHelperClass('example', '\\Neolao\\Site\\Helper\\View\\ExampleHelper');
+        //$view->registerHelperClass('example', '\\Neolao\\Site\\Helper\\View\\ExampleHelper');
     }
 }
