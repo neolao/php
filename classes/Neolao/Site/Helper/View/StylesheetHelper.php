@@ -31,7 +31,7 @@ use \Neolao\Site\Helper\View\AbstractHelper;
  * echo $fileUrl;                                                   // http://site.tld/style/stylesheets/screen.css
  *
  *
- * Example 3: Get the url if the generated file screen.css
+ * Example 3: Get the url of the generated file screen.css
  *
  * $helper              = new Stylesheet();
  * $helper->basePath    = '/path/to/style';
