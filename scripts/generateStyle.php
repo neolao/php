@@ -50,6 +50,9 @@ try {
     $stylesheetHelper           = new \Neolao\Site\Helper\View\StylesheetHelper();
     $stylesheetHelper->basePath = $stylePath;
     $stylesheetHelper->generate();
+    $javascriptHelper           = new \Neolao\Site\Helper\View\JavascriptHelper();
+    $javascriptHelper->basePath = $stylePath;
+    $javascriptHelper->generate();
     echo Cli::getColoredString('OK', 'green'), "\n";
 } catch (\Exception $error) {
     echo Cli::getColoredString('ERROR', 'red'), "\n";
