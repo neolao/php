@@ -91,21 +91,21 @@ class StylesheetHelper extends AbstractHelper
     public function getFileUrl($fileName)
     {
         // By default, use the original file
-        $filePath   = $this->basePath . DIRECTORY_SEPARATOR . 'stylesheets' . DIRECTORY_SEPARATOR . $fileName;
-        $fileUrl    = $this->baseUrl . DIRECTORY_SEPARATOR . 'stylesheets' . DIRECTORY_SEPARATOR . $fileName;
+        $filePath   = $this->basePath . '/stylesheets/' . $fileName;
+        $fileUrl    = $this->baseUrl . '/stylesheets/' . $fileName;
 
         // If specified, pre-compile the original file
         if (!$this->generated && $this->sass) {
-            $sassFilePath = $this->basePath . DIRECTORY_SEPARATOR . 'sass' . DIRECTORY_SEPARATOR . pathinfo($fileName, PATHINFO_FILENAME) . '.scss';
+            $sassFilePath = $this->basePath . '/sass/' . pathinfo($fileName, PATHINFO_FILENAME) . '.scss';
             $this->_sassCompile($sassFilePath, $filePath);
         }
 
         // If specified, use the generated file
         if ($this->generated) {
-            $generatedDirectory = $this->basePath . DIRECTORY_SEPARATOR . 'generated-styles';
+            $generatedDirectory = $this->basePath . '/generated-styles';
 
             // Get the version
-            $versionPath = $generatedDirectory . DIRECTORY_SEPARATOR . 'version.txt';
+            $versionPath = $generatedDirectory . '/version.txt';
             if (!is_readable($versionPath)) {
                 return $fileUrl;
             }
@@ -113,7 +113,7 @@ class StylesheetHelper extends AbstractHelper
             $version = trim($version);
 
             // Generated URL
-            $fileUrl = $this->baseUrl . DIRECTORY_SEPARATOR . 'generated-styles' . DIRECTORY_SEPARATOR . $version . DIRECTORY_SEPARATOR . 'stylesheets' . DIRECTORY_SEPARATOR . $fileName;
+            $fileUrl = $this->baseUrl . '/generated-styles/' . $version . '/stylesheets/' . $fileName;
         }
 
         return $fileUrl;
@@ -125,13 +125,13 @@ class StylesheetHelper extends AbstractHelper
     public function generate()
     {
         // Get CSS files
-        $stylesheetsDirectory = $this->basePath . DIRECTORY_SEPARATOR . 'stylesheets';
-        $filePaths = glob($stylesheetsDirectory . DIRECTORY_SEPARATOR . '*.css');
+        $stylesheetsDirectory = $this->basePath . '/stylesheets';
+        $filePaths = glob($stylesheetsDirectory . '/*.css');
 
         // If specified, pre-compile the original files
         if ($this->sass) {
             foreach ($filePaths as $filePath) {
-                $sassFilePath = $this->basePath . DIRECTORY_SEPARATOR . 'sass' . DIRECTORY_SEPARATOR . pathinfo($filePath, PATHINFO_FILENAME) . '.scss';
+                $sassFilePath = $this->basePath . '/sass/' . pathinfo($filePath, PATHINFO_FILENAME) . '.scss';
                 $this->_sassCompile($sassFilePath, $filePath);
             }
         }
@@ -154,16 +154,18 @@ class StylesheetHelper extends AbstractHelper
 
         // Copy the entire style into a new directory
         // If the directory already exists, then do nothing
-        $snapshotDirectory = $this->basePath . DIRECTORY_SEPARATOR . 'generated-styles' . DIRECTORY_SEPARATOR . $checksum;
+        $snapshotDirectory = $this->basePath . '/generated-styles/' . $checksum;
         if (is_dir($snapshotDirectory)) {
             return;
         }
         mkdir($snapshotDirectory, 0777 - umask(), true);
-        FileSystem::copyDirectory($this->basePath . DIRECTORY_SEPARATOR . 'stylesheets', $snapshotDirectory . DIRECTORY_SEPARATOR . 'stylesheets');
+        FileSystem::copyDirectory($this->basePath . '/stylesheets', $snapshotDirectory . '/stylesheets');
+        FileSystem::copyDirectory($this->basePath . '/images', $snapshotDirectory . '/images');
+        FileSystem::copyDirectory($this->basePath . '/fonts', $snapshotDirectory . '/fonts');
 
         // Minify
         $compressor = new \CSSmin();
-        $newFilePaths = glob($snapshotDirectory . DIRECTORY_SEPARATOR . 'stylesheets' . DIRECTORY_SEPARATOR . '*.css');
+        $newFilePaths = glob($snapshotDirectory . '/stylesheets/*.css');
         foreach ($newFilePaths as $newFilePath) {
             $newFileContent = file_get_contents($newFilePath);
             $minified = $compressor->run($newFileContent);
@@ -171,7 +173,7 @@ class StylesheetHelper extends AbstractHelper
         }
 
         // Save the version
-        $versionPath = $this->basePath . DIRECTORY_SEPARATOR . 'generated-styles' . DIRECTORY_SEPARATOR . 'version.txt';
+        $versionPath = $this->basePath . '/generated-styles/version.txt';
         if (file_exists($versionPath) && !is_writable($versionPath)) {
             $logger = Logger::getInstance();
             $logger->warning('The file ' . $versionPath . ' is not writable');
