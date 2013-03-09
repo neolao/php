@@ -342,12 +342,11 @@ class Site
             $controller->registerHelper($key, $helper);
         }
 
-        $controller->registerHelperClass('link', '\\Neolao\\Site\\Helper\\Controller\\LinkHelper');
     }
 
     /**
      * Add view helpers
-     * 
+     *
      * @param   \Neolao\Site\View           $view           View instance
      */
     protected function _addViewHelpers(View $view)
@@ -356,7 +355,5 @@ class Site
         foreach ($this->_viewHelpers as $key => $helper) {
             $view->registerHelper($key, $helper);
         }
-
-        //$view->registerHelperClass('example', '\\Neolao\\Site\\Helper\\View\\ExampleHelper');
     }
 }
