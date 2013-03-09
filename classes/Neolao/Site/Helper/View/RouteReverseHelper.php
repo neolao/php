@@ -15,7 +15,7 @@ use \Neolao\Site;
 class RouteReverseHelper extends AbstractHelper
 {
     /**
-     * Get the reverse  URL of the specified route
+     * Get the reverse URL of the specified route
      * (access point of the view helper)
      *
      * @param   string  $route      The route
