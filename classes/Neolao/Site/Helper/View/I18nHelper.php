@@ -41,7 +41,9 @@ class I18nHelper extends AbstractHelper
         $parameters = [];
         foreach ($array as $parameter) {
             list($name, $value) = explode(':', $parameter);
-            $parameters[$name] = $value;
+            $name               = trim($name);
+            $value              = trim($value);
+            $parameters[$name]  = $value;
         }
 
         // Return the message
