@@ -11,6 +11,7 @@ namespace Neolao;
 use \Neolao\Site\Controller;
 use \Neolao\Site\View;
 use \Neolao\Site\Request;
+use \Neolao\Site\Routes;
 use \Neolao\Site\Helper\ControllerInterface;
 use \Neolao\Site\Helper\ViewInterface;
 use \Neolao\Util\Path;
@@ -49,6 +50,13 @@ class Site
      * @var string
      */
     protected $_viewsPath;
+
+    /**
+     * Routes
+     *
+     * @var \Neolao\Site\Routes
+     */
+    protected $_routes;
 
     /**
      * HTTP Request
@@ -91,6 +99,9 @@ class Site
         // Get the base url
         $this->_baseUrl = Path::getBaseUrl();
 
+        // Create the routes
+        $this->_routes = new Routes();
+
         // Create a request
         $this->_request = new Request();
         
@@ -110,7 +121,7 @@ class Site
      */
     public function configureRoutes($routes)
     {
-        $this->_request->configureRoutes($routes);
+        $this->_routes->configure($routes);
     }
 
     /**
@@ -242,7 +253,7 @@ class Site
 
         try {
             // Handle the URL route
-            $this->_request->handleRoute();
+            $this->_routes->handleRequest($this->_request);
             
             // Display the site
             $this->display($this->_request->controllerName, $this->_request->actionName);
@@ -279,14 +290,14 @@ class Site
         
         // Create controller
         $controllerClassName    = ucfirst($controllerName).'Controller';
-        $controllerPath         = $this->_controllersPath.'/'.$controllerClassName.'.php';
+        $controllerPath         = $this->_controllersPath . '/' . $controllerClassName . '.php';
         if (!is_file($controllerPath)) {
-            throw new \Exception('Controller not found: '.$controllerPath);
+            throw new \Exception('Controller not found: ' . $controllerPath);
         }
         require_once($controllerPath);
         $controller = new $controllerClassName($this);
         if ($controller instanceof Controller === false) {
-            throw new \Exception($controllerClassName.' does not inherit \Neolao\Site\Controller');
+            throw new \Exception($controllerClassName . ' does not inherit \Neolao\Site\Controller');
         }
 
         // Add controller helpers
@@ -312,7 +323,7 @@ class Site
         @ob_end_flush();
         exit;
     }
-    
+
     /**
      * Redirect to a page
      *
@@ -321,13 +332,25 @@ class Site
      */
     public function redirect($routeName, $parameters = [])
     {
-        $url = $this->request->reverseRoute($routeName, $parameters);
+        $url = $this->_routes->reverse($routeName, $parameters);
         header('Pragma: no-cache');
         header('Expires: 0');
-        header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
         header('Cache-Control: max-age=0, no-cache, no-store, must-revalidate');
-        header('Location: '.$url);
+        header('Location: ' . $url);
         exit;
+    }
+
+    /**
+     * Reverse a route
+     *
+     * @param   string  $routeName          Route name
+     * @param   array   $parameters         Parameters
+     * @return  string                      Reverse path
+     */
+    public function reverse($routeName, $parameters = [])
+    {
+        return $this->_routes->reverse($routeName, $parameters);
     }
 
     /**

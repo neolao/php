@@ -149,7 +149,7 @@ abstract class Controller
         // Call shortcut action
         $actionMethodName = $actionName.'Action';
         if (!method_exists($this, $actionMethodName)) {
-            throw new \Exception($actionMethodName.' is undefined in '.get_class($this));
+            throw new \Exception($actionMethodName . ' is undefined in ' . get_class($this));
         }
         $this->$actionMethodName();
     }

@@ -21,8 +21,7 @@ class LinkHelper extends AbstractHelper
     public function main($routeName, $parameters = [])
     {
         $controller = $this->getController();
-        $request    = $controller->request;
-        $url        = $request->reverseRoute($routeName, $parameters);
+        $url        = $controller->site->reverse($routeName, $parameters);
         return $url;
     }
 }

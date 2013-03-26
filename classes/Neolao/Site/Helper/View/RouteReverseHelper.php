@@ -28,10 +28,6 @@ class RouteReverseHelper extends AbstractHelper
         if ($view->site instanceof Site === false) {
             return 'error';
         }
-        if ($view->site->request instanceof Request === false) {
-            return '';
-        }
-        $request = $view->site->request;
 
         // Get the route name
         $routeArray = explode(',', $route);
@@ -50,7 +46,7 @@ class RouteReverseHelper extends AbstractHelper
         }
 
         // Get the reverse URL
-        $url = $request->reverseRoute($routeName, $parameters);
+        $url = $view->site->reverse($routeName, $parameters);
 
         return $url;
     }
