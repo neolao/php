@@ -6,9 +6,9 @@ namespace Neolao\Site;
 
 
 /**
- * Routes
+ * Router
  */
-class Routes
+class Router
 {
     use \Neolao\Mixin\GetterSetter;
 

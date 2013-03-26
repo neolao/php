@@ -11,7 +11,7 @@ namespace Neolao;
 use \Neolao\Site\Controller;
 use \Neolao\Site\View;
 use \Neolao\Site\Request;
-use \Neolao\Site\Routes;
+use \Neolao\Site\Router;
 use \Neolao\Site\Helper\ControllerInterface;
 use \Neolao\Site\Helper\ViewInterface;
 use \Neolao\Util\Path;
@@ -52,11 +52,11 @@ class Site
     protected $_viewsPath;
 
     /**
-     * Routes
+     * Router
      *
-     * @var \Neolao\Site\Routes
+     * @var \Neolao\Site\Router
      */
-    protected $_routes;
+    protected $_router;
 
     /**
      * HTTP Request
@@ -99,8 +99,8 @@ class Site
         // Get the base url
         $this->_baseUrl = Path::getBaseUrl();
 
-        // Create the routes
-        $this->_routes = new Routes();
+        // Create the router
+        $this->_router = new Router();
 
         // Create a request
         $this->_request = new Request();
@@ -115,13 +115,13 @@ class Site
 
 
     /**
-     * Configure the routes
+     * Configure the router
      *
      * @param   stdClass    $routes         Routes object
      */
-    public function configureRoutes($routes)
+    public function configureRouter($routes)
     {
-        $this->_routes->configure($routes);
+        $this->_router->configure($routes);
     }
 
     /**
@@ -253,7 +253,7 @@ class Site
 
         try {
             // Handle the URL route
-            $this->_routes->handleRequest($this->_request);
+            $this->_router->handleRequest($this->_request);
             
             // Display the site
             $this->display($this->_request->controllerName, $this->_request->actionName);
@@ -332,7 +332,7 @@ class Site
      */
     public function redirect($routeName, $parameters = [])
     {
-        $url = $this->_routes->reverse($routeName, $parameters);
+        $url = $this->_router->reverse($routeName, $parameters);
         header('Pragma: no-cache');
         header('Expires: 0');
         header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
@@ -350,7 +350,7 @@ class Site
      */
     public function reverse($routeName, $parameters = [])
     {
-        return $this->_routes->reverse($routeName, $parameters);
+        return $this->_router->reverse($routeName, $parameters);
     }
 
     /**
