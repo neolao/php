@@ -54,12 +54,8 @@ abstract class RouteAbstract
      *
      * @param   array   $parameters         Parameters
      */
-    public function configure($parameters)
+    public function configure(array $parameters)
     {
-        if (is_object($parameters)) {
-            $parameters = get_object_vars($parameters);
-        }
-
         if (isset($parameters['pattern'])) {
             $this->_pattern = $parameters['pattern'];
         }

@@ -47,7 +47,7 @@ class Request
      *
      * @var string
      */
-    protected $_pathInfo;
+    public $pathInfo;
 
 
 
@@ -57,7 +57,7 @@ class Request
     public function __construct()
     {
         // Get the path info
-        $this->_pathInfo = Path::getPathInfo();
+        $this->pathInfo = Path::getPathInfo();
 
         // Get parameters and sanitize them
         $this->_getParameters();
@@ -65,16 +65,6 @@ class Request
         // Default values
         $this->controllerName   = 'index';
         $this->actionName       = 'index';
-    }
-
-    /**
-     * Get the path info
-     * 
-     * @return  string      The path
-     */
-    public function getPathInfo()
-    {
-        return $this->_pathInfo;
     }
 
     /**

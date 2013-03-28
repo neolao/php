@@ -5,6 +5,7 @@
 namespace Neolao\Site;
 
 use \Neolao\Site\Router\RouteRegexp;
+use \Neolao\Site\Router\RouteStandard;
 
 /**
  * Router
@@ -47,8 +48,20 @@ class Router
 
         // Get all routes
         foreach ($config as $routeName => $routeParameters) {
+            // Convert the parameters to an array
+            if (is_object($routeParameters)) {
+                $routeParameters = get_object_vars($routeParameters);
+            }
+
             // Create a route instance
-            $route = new RouteRegexp();
+            $type = isset($routeParameters['type'])?$routeParameters['type'] : 'standard';
+            switch ($type) {
+                case 'regexp':
+                    $route = new RouteRegexp();
+                    break;
+                default:
+                    $route = new RouteStandard();
+            }
             $route->configure($routeParameters);
 
             // Add the route instance to the list

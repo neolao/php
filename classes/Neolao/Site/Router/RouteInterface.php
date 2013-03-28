@@ -16,7 +16,7 @@ interface RouteInterface
      *
      * @param   array   $parameters         Parameters
      */
-    function configure($parameters);
+    function configure(array $parameters);
 
     /**
      * Find the route based on the request
@@ -32,5 +32,5 @@ interface RouteInterface
      * @param   array   $parameters         Parameters
      * @return  string                      Reverse path
      */
-    function reverse($parameters = []);
+    function reverse(array $parameters = []);
 }

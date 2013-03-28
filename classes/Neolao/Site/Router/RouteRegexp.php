@@ -33,12 +33,8 @@ class RouteRegexp extends RouteAbstract implements RouteInterface
      *
      * @param   array   $parameters         Parameters
      */
-    public function configure($parameters)
+    public function configure(array $parameters)
     {
-        if (is_object($parameters)) {
-            $parameters = get_object_vars($parameters);
-        }
-
         parent::configure($parameters);
 
         if (isset($parameters['map'])) {
@@ -94,7 +90,7 @@ class RouteRegexp extends RouteAbstract implements RouteInterface
      * @param   array   $parameters         Parameters
      * @return  string                      Reverse path
      */
-    public function reverse($parameters = [])
+    public function reverse(array $parameters = [])
     {
         $result = '';
 
