@@ -18,8 +18,10 @@ class RouteStandard extends atoum\test
 
     /**
      * Executed before each test
+     *
+     * @param   string      $testMethod         Method name
      */
-    public function beforeTestMethod()
+    public function beforeTestMethod($testMethod)
     {
         $this->route = new \Neolao\Site\Router\RouteStandard();
     }
