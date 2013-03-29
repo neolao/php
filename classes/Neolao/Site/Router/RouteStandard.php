@@ -8,6 +8,14 @@ use \Neolao\Site\Request;
 
 /**
  * Route with a standard pattern
+ *
+ * Example of a configuration:
+ * $config = [
+ *      'pattern'       => '/account/:name/order/:orderId/pdf',
+ *      'controller'    => 'foo',
+ *      'action'        => 'bar',
+ *      'reverse'       => '/account/%s/order/%d/pdf'
+ * ];
  */
 class RouteStandard extends RouteAbstract implements RouteInterface
 {

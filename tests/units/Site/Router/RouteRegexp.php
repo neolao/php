@@ -5,14 +5,14 @@ use \mageekguy\atoum;
 use \Neolao\Site\Request;
 
 /**
- * Test of \Neolao\Site\Router\RouteStandard
+ * Test of \Neolao\Site\Router\RouteRegexp
  */
-class RouteStandard extends atoum\test
+class RouteRegexp extends atoum\test
 {
     /**
      * Route instance
      *
-     * @var \Neolao\Site\Router\RouteStandard
+     * @var \Neolao\Site\Router\RouteRegexp
      */
     public $route;
 
@@ -23,7 +23,7 @@ class RouteStandard extends atoum\test
      */
     public function beforeTestMethod($testMethod)
     {
-        $this->route = new \Neolao\Site\Router\RouteStandard();
+        $this->route = new \Neolao\Site\Router\RouteRegexp();
     }
 
     /**
@@ -40,7 +40,7 @@ class RouteStandard extends atoum\test
         // Initialize the route
         $route = $this->route;
         $config = [
-            'pattern'       => '/',
+            'pattern'       => '/^\/$/',
             'controller'    => 'foo',
             'action'        => 'bar',
             'reverse'       => '/'
@@ -70,10 +70,10 @@ class RouteStandard extends atoum\test
         // Initialize the route
         $route = $this->route;
         $config = [
-            'pattern'       => '/a',
+            'pattern'       => '/^\/a$/',
             'controller'    => 'foo',
             'action'        => 'bar',
-            'reverse'       => '/b'
+            'reverse'       => '/a'
         ];
         $route->configure($config);
 
@@ -89,7 +89,7 @@ class RouteStandard extends atoum\test
     /**
      * Method "handleRequest"
      *
-     * Check the path "/account/:name"
+     * Check the path "/account/([a-zA-Z]+)"
      */
     public function testHandleRequest03()
     {
@@ -102,7 +102,8 @@ class RouteStandard extends atoum\test
         // Initialize the route
         $route = $this->route;
         $config = [
-            'pattern'       => '/account/:name',
+            'pattern'       => '/^\/account\/([a-zA-Z]+)$/',
+            'map'           => ['name'],
             'controller'    => 'foo',
             'action'        => 'bar',
             'reverse'       => '/account/%s'
@@ -122,7 +123,7 @@ class RouteStandard extends atoum\test
     /**
      * Method "handleRequest"
      *
-     * Check the path "/account/:name/:section"
+     * Check the path "/account/([a-zA-Z]+)/([a-zA-Z]+)"
      */
     public function testHandleRequest04()
     {
@@ -135,7 +136,8 @@ class RouteStandard extends atoum\test
         // Initialize the route
         $route = $this->route;
         $config = [
-            'pattern'       => '/account/:name/:section',
+            'pattern'       => '/^\/account\/([a-zA-Z]+)\/([a-zA-Z]+)$/',
+            'map'           => ['name', 'section'],
             'controller'    => 'foo',
             'action'        => 'bar',
             'reverse'       => '/account/%s/%s'
@@ -156,7 +158,7 @@ class RouteStandard extends atoum\test
     /**
      * Method "handleRequest"
      *
-     * Check the path "/account/:name/order/:orderId/pdf"
+     * Check the path "/account/([a-zA-Z]+)/order/([0-9]+)/pdf"
      */
     public function testHandleRequest05()
     {
@@ -169,7 +171,8 @@ class RouteStandard extends atoum\test
         // Initialize the route
         $route = $this->route;
         $config = [
-            'pattern'       => '/account/:name/order/:orderId/pdf',
+            'pattern'       => '/^\/account\/([a-zA-Z]+)\/order\/([0-9]+)\/pdf$/',
+            'map'           => ['name', 'orderId'],
             'controller'    => 'foo',
             'action'        => 'bar',
             'reverse'       => '/account/%s/order/%d/pdf'
@@ -197,7 +200,7 @@ class RouteStandard extends atoum\test
         // Initialize the route
         $route = $this->route;
         $config = [
-            'pattern'       => '/',
+            'pattern'       => '/^\/$/',
             'controller'    => 'foo',
             'action'        => 'bar',
             'reverse'       => '/'
@@ -214,14 +217,15 @@ class RouteStandard extends atoum\test
     /**
      * Method "reverse"
      *
-     * Check the path "/account/:name"
+     * Check the path "/account/([a-zA-Z]+)"
      */
     public function testReverse02()
     {
         // Initialize the route
         $route = $this->route;
         $config = [
-            'pattern'       => '/account/:name',
+            'pattern'       => '/^\/account\/([a-zA-Z]+)$/',
+            'map'           => ['name'],
             'controller'    => 'foo',
             'action'        => 'bar',
             'reverse'       => '/account/%s'
@@ -241,14 +245,15 @@ class RouteStandard extends atoum\test
     /**
      * Method "reverse"
      *
-     * Check the path "/account/:name/order/:orderId/pdf"
+     * Check the path "/account/([a-zA-Z]+)/order/([0-9]+)/pdf"
      */
     public function testReverse03()
     {
         // Initialize the route
         $route = $this->route;
         $config = [
-            'pattern'       => '/account/:name/order/:orderId/pdf',
+            'pattern'       => '/^\/account\/([a-zA-Z]+)\/order\/([0-9]+)\/pdf$/',
+            'map'           => ['name', 'orderId'],
             'controller'    => 'foo',
             'action'        => 'bar',
             'reverse'       => '/account/%s/order/%d/pdf'
