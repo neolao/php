@@ -16,6 +16,7 @@ use \Neolao\Site\Helper\View\I18nHelper;
 use \Neolao\Site;
 use \Neolao\I18n;
 use \Neolao\I18n\Locale;
+use \Neolao\Util\Json;
 
 /**
  * Site with helpers
@@ -182,25 +183,6 @@ class SiteAdvanced extends Site
 
         // Update the I18n instance
         $this->_i18n->removeLocales();
-        $localeDirectories = glob($this->_localesPath . '/*', GLOB_ONLYDIR);
-        foreach ($localeDirectories as $localeDirectory) {
-            // Create a locale
-            $localeString = pathinfo($localeDirectory, PATHINFO_BASENAME);
-            $locale = new Locale($localeString);
-
-            // Add the messages
-            $messagesPath = $localeDirectory . '/messages.json';
-            if (is_file($messagesPath)) {
-                if (!is_readable($messagesPath)) {
-                    throw new \Exception("$messagesPath is not readable");
-                }
-                $messages = file_get_contents($messagesPath);
-                $locale->addMessagesJson($messages);
-            }
-
-            // Add the locale
-            $this->_i18n->addLocale($locale);
-        }
     }
 
     /**
@@ -214,6 +196,33 @@ class SiteAdvanced extends Site
     }
     public function set_localeString($value)
     {
+        // Create the locale if necessary
+        if (!$this->_i18n->hasLocale($value)) {
+            // Get the directory path
+            $localeDirectory = $this->_localesPath . '/' . $value;
+            if (!is_dir($localeDirectory)) {
+                return;
+            }
+
+            // Create the locale instance
+            $locale = new Locale($value);
+
+            // Add the messages
+            $messagesPath = $localeDirectory . '/messages.json';
+            if (is_file($messagesPath)) {
+                if (!is_readable($messagesPath)) {
+                    throw new \Exception("$messagesPath is not readable");
+                }
+                $messages = file_get_contents($messagesPath);
+                $messages = Json::removeComments($messages);
+                $locale->addMessagesJson($messages);
+            }
+
+            // Add the locale
+            $this->_i18n->addLocale($locale);
+        }
+
+        // Select the locale
         $this->_i18n->localeString = $value;
     }
 

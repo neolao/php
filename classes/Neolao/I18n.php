@@ -56,6 +56,19 @@ class I18n
     }
 
     /**
+     * Indicates that the specified locale exists
+     *
+     * @param   string      $localeString       Locale string
+     */
+    public function hasLocale($localeString)
+    {
+        if (array_key_exists($localeString, $this->_locales)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Remove all locales
      */
     public function removeLocales()
