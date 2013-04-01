@@ -107,6 +107,7 @@ class SiteAdvanced extends Site
         $this->addViewHelper('_', $this->_i18nHelper);
         $this->addViewHelper('t', $this->_i18nHelper);
         $this->addViewHelper('translate', $this->_i18nHelper);
+        $this->addViewHelper('i18n', $this->_i18nHelper);
         $this->addViewHelper('stylesheetsPath', $this->_stylesheetHelper);
         $this->addViewHelper('javascriptsPath', $this->_javascriptHelper);
     }
