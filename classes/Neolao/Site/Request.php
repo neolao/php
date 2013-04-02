@@ -14,6 +14,20 @@ class Request
 {
     use \Neolao\Mixin\GetterSetter;
 
+    // Constants of the method
+    const METHOD_GET        = 'GET';
+    const METHOD_POST       = 'POST';
+    const METHOD_PUT        = 'PUT';
+    const METHOD_DELETE     = 'DELETE';
+    const METHOD_OPTIONS    = 'OPTIONS';
+
+    /**
+     * Request method
+     *
+     * @var string
+     */
+    public $method;
+
     /**
      * Controller name
      * 
@@ -56,6 +70,11 @@ class Request
      */
     public function __construct()
     {
+        // Request method
+        if (isset($_SERVER['REQUEST_METHOD'])) {
+            $this->method = $_SERVER['REQUEST_METHOD'];
+        }
+
         // Get the path info
         $this->pathInfo = Path::getPathInfo();
 
