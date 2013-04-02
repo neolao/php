@@ -13,6 +13,7 @@ use \Neolao\Site\View;
 use \Neolao\Site\Helper\View\StylesheetHelper;
 use \Neolao\Site\Helper\View\JavascriptHelper;
 use \Neolao\Site\Helper\View\I18nHelper;
+use \Neolao\Site\Helper\Controller\I18nHelper as ControllerI18nHelper;
 use \Neolao\Site;
 use \Neolao\I18n;
 use \Neolao\I18n\Locale;
@@ -59,6 +60,13 @@ class SiteAdvanced extends Site
     protected $_javascriptHelper;
 
     /**
+     * Internationalization helper for the controller
+     *
+     * @var \Neolao\Site\Helper\Controller\I18nHelper
+     */
+    protected $_controllerI18nHelper;
+
+    /**
      * Internationalization helper for the view
      *
      * @var \Neolao\Site\Helper\View\I18nHelper
@@ -92,9 +100,11 @@ class SiteAdvanced extends Site
         // Initialize the internationalization instance
         $this->_i18n = new I18n();
 
-        // Initialize the i18n helper for the view
-        $this->_i18nHelper = new I18nHelper();
-        $this->_i18nHelper->i18n = $this->_i18n;
+        // Initialize the i18n helper for the view and the controller
+        $this->_controllerI18nHelper        = new ControllerI18nHelper();
+        $this->_controllerI18nHelper->i18n  = $this->_i18n;
+        $this->_i18nHelper                  = new I18nHelper();
+        $this->_i18nHelper->i18n            = $this->_i18n;
 
         // Initialize the stylesheet helper for the view
         $this->_stylesheetHelper        = new StylesheetHelper();
@@ -104,6 +114,10 @@ class SiteAdvanced extends Site
         $this->_javascriptHelper        = new JavascriptHelper();
 
         // Add the helpers
+        $this->addControllerHelper('_', $this->_controllerI18nHelper);
+        $this->addControllerHelper('t', $this->_controllerI18nHelper);
+        $this->addControllerHelper('translate', $this->_controllerI18nHelper);
+        $this->addControllerHelper('i18n', $this->_controllerI18nHelper);
         $this->addViewHelper('_', $this->_i18nHelper);
         $this->addViewHelper('t', $this->_i18nHelper);
         $this->addViewHelper('translate', $this->_i18nHelper);
