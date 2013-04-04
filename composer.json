@@ -15,7 +15,7 @@
     {
         "php"                   : ">=5.4",
         "mustache/mustache"     : "2.1.*",
-        "richthegeek/phpsass"   : "dev-master",
+        "leafo/scssphp"         : "*",
         "tedivm/jshrink"        : "*"
     },
     "require-dev":

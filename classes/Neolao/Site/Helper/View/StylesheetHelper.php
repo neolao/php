@@ -207,8 +207,12 @@ class StylesheetHelper extends AbstractHelper
             'syntax'    => 'scss'
         ];
         try {
-            $parser = new \SassParser($options);
-            $content = $parser->toCss($sassFilePath);
+            //$parser = new \SassParser($options);
+            //$content = $parser->toCss($sassFilePath);
+            $parser = new \scssc();
+            $parser->setImportPaths(dirname($sassFilePath) . '/');
+            $source = file_get_contents($sassFilePath);
+            $content = $parser->compile($source);
             file_put_contents($filePath, $content);
         } catch (\Exception $error) {
             $logger = Logger::getInstance();
