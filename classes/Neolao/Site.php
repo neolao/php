@@ -129,11 +129,11 @@ class Site
      * 
      * @var string
      */
-    public function get_serverName()
+    protected function get_serverName()
     {
         return $this->_serverName;
     }
-    public function set_serverName($name)
+    protected function set_serverName($name)
     {
         $this->_serverName = $name;
     }
@@ -143,11 +143,11 @@ class Site
      *
      * @var string
      */
-    public function get_controllersPath()
+    protected function get_controllersPath()
     {
         return $this->_controllersPath;
     }
-    public function set_controllersPath($path)
+    protected function set_controllersPath($path)
     {
         $this->_controllersPath = $path;
     }
@@ -157,11 +157,11 @@ class Site
      *
      * @var string
      */
-    public function get_viewsPath()
+    protected function get_viewsPath()
     {
         return $this->_viewsPath;
     }
-    public function set_viewsPath($path)
+    protected function set_viewsPath($path)
     {
         $this->_viewsPath = $path;
         $this->_view->setDirectory($path);
@@ -172,11 +172,11 @@ class Site
      *
      * @var \Neolao\Site\View
      */
-    public function get_viewRenderer()
+    protected function get_viewRenderer()
     {
         return $this->_view;
     }
-    public function set_viewRenderer(View $renderer)
+    protected function set_viewRenderer(View $renderer)
     {
         $this->_view = $renderer;
         $this->_view->site = $this;
@@ -194,7 +194,7 @@ class Site
      * 
      * @var string
      */
-    public function get_baseUrl()
+    protected function get_baseUrl()
     {
         return $this->_baseUrl;
     }
@@ -204,7 +204,7 @@ class Site
      * 
      * @var \Neolao\Site\Request
      */
-    public function get_request()
+    protected function get_request()
     {
         return $this->_request;
     }
@@ -214,7 +214,7 @@ class Site
      * 
      * @var \Neolao\Site\View
      */
-    public function get_view()
+    protected function get_view()
     {
         return $this->_view;
     }

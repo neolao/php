@@ -185,11 +185,11 @@ class SiteAdvanced extends Site
      *
      * @var string
      */
-    public function get_localesPath()
+    protected function get_localesPath()
     {
         return $this->_localesPath;
     }
-    public function set_localesPath($path)
+    protected function set_localesPath($path)
     {
         if (!is_dir($path)) {
             throw new \Exception("$path is not a directory");
@@ -205,11 +205,11 @@ class SiteAdvanced extends Site
      *
      * @var string
      */
-    public function get_localeString()
+    protected function get_localeString()
     {
         return $this->_i18n->localeString;
     }
-    public function set_localeString($value)
+    protected function set_localeString($value)
     {
         // Create the locale if necessary
         if (!$this->_i18n->hasLocale($value)) {

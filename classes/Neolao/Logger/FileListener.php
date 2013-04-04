@@ -65,7 +65,7 @@ class FileListener implements ListenerInterface
         // Check if the directory is created
         $directory = dirname($this->_filePath);
         if (!is_dir($directory)) {
-            mkdir($directory, 0775, true);
+            mkdir($directory, 0777 - umask(), true);
         }
         
         // Write ...
