@@ -1,9 +1,5 @@
 <?php
-/**
- * @package Neolao\Site\Helper\View
- */
 namespace Neolao\Site\Helper\View;
-
 
 use \Neolao\Site\View;
 use \Neolao\Site\Helper\ViewInterface;

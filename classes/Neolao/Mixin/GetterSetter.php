@@ -1,7 +1,4 @@
 <?php
-/**
- * @package Neolao\Mixin
- */
 namespace Neolao\Mixin;
 
 /**

@@ -1,7 +1,4 @@
 <?php
-/**
- * @package Neolao\Site
- */
 namespace Neolao\Site\Router;
 
 use \Neolao\Site\Request;
@@ -10,6 +7,7 @@ use \Neolao\Site\Request;
  * Route with a regexp as pattern
  *
  * Example of a configuration:
+ * <pre>
  * $config = [
  *      'pattern'       => '/^\/account\/([a-zA-Z]+)\/order\/([0-9]+)\/pdf$/',
  *      'map'           => ['name', 'orderId'],
@@ -17,6 +15,7 @@ use \Neolao\Site\Request;
  *      'action'        => 'bar',
  *      'reverse'       => '/account/%s/order/%d/pdf'
  * ];
+ * </pre>
  */
 class RouteRegexp extends RouteAbstract implements RouteInterface
 {

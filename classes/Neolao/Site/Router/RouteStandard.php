@@ -1,7 +1,4 @@
 <?php
-/**
- * @package Neolao\Site
- */
 namespace Neolao\Site\Router;
 
 use \Neolao\Site\Request;
@@ -10,12 +7,14 @@ use \Neolao\Site\Request;
  * Route with a standard pattern
  *
  * Example of a configuration:
+ * <pre>
  * $config = [
  *      'pattern'       => '/account/:name/order/:orderId/pdf',
  *      'controller'    => 'foo',
  *      'action'        => 'bar',
  *      'reverse'       => '/account/%s/order/%d/pdf'
  * ];
+ * </pre>
  */
 class RouteStandard extends RouteAbstract implements RouteInterface
 {

@@ -1,7 +1,4 @@
 <?php
-/**
- * @package Neolao\Site\Helper\View
- */
 namespace Neolao\Site\Helper\View;
 
 use \Neolao\Logger;
@@ -13,32 +10,33 @@ use \Neolao\Site\Helper\View\AbstractHelper;
  *
  *
  * Example 1: Get the url of the file screen.css
- *
+ * <pre>
  * $helper              = new Stylesheet();
  * $helper->basePath    = '/path/to/style';
  * $helper->baseUrl     = 'http://site.tld/style';
  * $fileUrl             = $helper->getFileUrl('screen.css');
  * echo $fileUrl;                                                   // http://site.tld/style/stylesheets/screen.css
- *
+ * </pre>
  *
  * Example 2: Compile with SASS and get the url of the file screen.css
- *
+ * <pre>
  * $helper              = new Stylesheet();
  * $helper->basePath    = '/path/to/style';
  * $helper->baseUrl     = 'http://site.tld/style';
  * $helper->sass        = true;                                     // Compile /path/to/style/sass/screen.scss
  * $fileUrl             = $helper->getFileUrl('screen.css');
  * echo $fileUrl;                                                   // http://site.tld/style/stylesheets/screen.css
- *
+ * </pre>
  *
  * Example 3: Get the url of the generated file screen.css
- *
+ * <pre>
  * $helper              = new Stylesheet();
  * $helper->basePath    = '/path/to/style';
  * $helper->baseUrl     = 'http://site.tld/style';
  * $helper->generated   = true;                                     // Get the version from /path/to/style/generated-styles/version.txt
  * $fileUrl             = $helper->getFileUrl('screen.css');
  * echo $fileUrl;                                                   // http://site.tld/style/generated-styles/a75ca72342d875fb6d50b03e4a6dd5a4/stylesheets/screen.css
+ * </pre>
  */
 class StylesheetHelper extends AbstractHelper
 {

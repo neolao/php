@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+	<meta name="robots" content="noindex" />
+
+	<title>File Neolao/Util/Json.php</title>
+
+	<script type="text/javascript" src="resources/combined.js?3103832476"></script>
+	<script type="text/javascript" src="elementlist.js?4065825420"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Neolao.html">Neolao<span></span></a>
+						<ul>
+				<li><a href="namespace-Neolao.Auth.html">Auth</a>
+						</li>
+				<li><a href="namespace-Neolao.Behavior.html">Behavior</a>
+						</li>
+				<li><a href="namespace-Neolao.I18n.html">I18n</a>
+						</li>
+				<li><a href="namespace-Neolao.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Neolao.Mixin.html">Mixin</a>
+						</li>
+				<li><a href="namespace-Neolao.Site.html">Site<span></span></a>
+						<ul>
+				<li><a href="namespace-Neolao.Site.Helper.html">Helper<span></span></a>
+						<ul>
+				<li><a href="namespace-Neolao.Site.Helper.Controller.html">Controller</a>
+						</li>
+				<li><a href="namespace-Neolao.Site.Helper.View.html">View</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Neolao.Site.Router.html">Router</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-Neolao.Util.html">Util</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Neolao.Util.Cli.html">Cli</a></li>
+				<li><a href="class-Neolao.Util.Config.html">Config</a></li>
+				<li><a href="class-Neolao.Util.FileSYstem.html">FileSYstem</a></li>
+				<li class="active"><a href="class-Neolao.Util.Json.html">Json</a></li>
+				<li><a href="class-Neolao.Util.Path.html">Path</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Neolao.Util.html" title="Summary of Neolao\Util"><span>Namespace</span></a>
+			</li>
+			<li>
+				<a href="class-Neolao.Util.Json.html" title="Summary of Neolao\Util\Json"><span>Class</span></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<pre><code><span id="1" class="l"><a class="l" href="#1"> 1: </a><span class="xlang">&lt;?php</span>
+</span><span id="2" class="l"><a class="l" href="#2"> 2: </a><span class="php-keyword1">namespace</span> Neolao\Util;
+</span><span id="3" class="l"><a class="l" href="#3"> 3: </a>
+</span><span id="4" class="l"><a class="l" href="#4"> 4: </a><span class="php-comment">/**
+</span></span><span id="5" class="l"><a class="l" href="#5"> 5: </a><span class="php-comment"> * Class utility to work with JSON
+</span></span><span id="6" class="l"><a class="l" href="#6"> 6: </a><span class="php-comment"> */</span>
+</span><span id="7" class="l"><a class="l" href="#7"> 7: </a><span class="php-keyword1">class</span> <a id="Json" href="#Json">Json</a>
+</span><span id="8" class="l"><a class="l" href="#8"> 8: </a>{
+</span><span id="9" class="l"><a class="l" href="#9"> 9: </a>    <span class="php-comment">/**
+</span></span><span id="10" class="l"><a class="l" href="#10">10: </a><span class="php-comment">     * Remove comments
+</span></span><span id="11" class="l"><a class="l" href="#11">11: </a><span class="php-comment">     *
+</span></span><span id="12" class="l"><a class="l" href="#12">12: </a><span class="php-comment">     * @param   string      $json       JSON string
+</span></span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-comment">     * @return  string                  JSON string without comments
+</span></span><span id="14" class="l"><a class="l" href="#14">14: </a><span class="php-comment">     */</span>
+</span><span id="15" class="l"><a class="l" href="#15">15: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_removeComments" href="#_removeComments">removeComments</a>(<span class="php-var">$json</span>)
+</span><span id="16" class="l"><a class="l" href="#16">16: </a>    {
+</span><span id="17" class="l"><a class="l" href="#17">17: </a>        <span class="php-var">$json</span> = <span class="php-keyword2">preg_replace</span>(<span class="php-quote">&quot;#(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|([\s\t](//).*)#&quot;</span>, <span class="php-quote">''</span>, <span class="php-var">$json</span>);
+</span><span id="18" class="l"><a class="l" href="#18">18: </a>        <span class="php-keyword1">return</span> <span class="php-var">$json</span>;
+</span><span id="19" class="l"><a class="l" href="#19">19: </a>    }
+</span><span id="20" class="l"><a class="l" href="#20">20: </a>}
+</span><span id="21" class="l"><a class="l" href="#21">21: </a></span></code></pre>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

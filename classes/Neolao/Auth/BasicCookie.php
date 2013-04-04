@@ -1,7 +1,4 @@
 <?php
-/**
- * @package Neolao\Auth
- */
 namespace Neolao\Auth;
 
 use \Neolao\Logger;

@@ -1,7 +1,4 @@
 <?php
-/**
- * @package Neolao
- */
 namespace Neolao;
 
 use \Neolao\I18n\Locale;

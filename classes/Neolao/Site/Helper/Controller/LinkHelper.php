@@ -1,12 +1,9 @@
 <?php
-/**
- * @package Neolao\Site\Helper\Controller
- */
 namespace Neolao\Site\Helper\Controller;
-
 
 /**
  * Link helper
+ *
  * It is used to create the reverse URL of a route
  */
 class LinkHelper extends AbstractHelper

@@ -1,7 +1,4 @@
 <?php
-/**
- * @package Neolao\Site
- */
 namespace Neolao\Site;
 
 use \Neolao\Site\Router\RouteRegexp;

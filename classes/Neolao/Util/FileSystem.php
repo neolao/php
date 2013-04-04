@@ -1,7 +1,4 @@
 <?php
-/**
- * @package Neolao\Util
- */
 namespace Neolao\Util;
 
 /**

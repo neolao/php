@@ -1,9 +1,5 @@
 <?php
-/**
- * @package Neolao\Site
- */
 namespace Neolao\Site;
-
 
 use \Neolao\Site;
 use \Neolao\Site\Request;
@@ -11,6 +7,7 @@ use \Neolao\Site\Helper\ControllerInterface;
 
 /**
  * Abstract controller
+ *
  * All controllers are based on this class.
  * It provides core methods and helpers for fast implementation.
  */

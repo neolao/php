@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Interface Neolao\Site\Router\RouteInterface</title>
+
+	<script type="text/javascript" src="resources/combined.js?3103832476"></script>
+	<script type="text/javascript" src="elementlist.js?4065825420"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Neolao.html">Neolao<span></span></a>
+						<ul>
+				<li><a href="namespace-Neolao.Auth.html">Auth</a>
+						</li>
+				<li><a href="namespace-Neolao.Behavior.html">Behavior</a>
+						</li>
+				<li><a href="namespace-Neolao.I18n.html">I18n</a>
+						</li>
+				<li><a href="namespace-Neolao.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Neolao.Mixin.html">Mixin</a>
+						</li>
+				<li class="active"><a href="namespace-Neolao.Site.html">Site<span></span></a>
+						<ul>
+				<li><a href="namespace-Neolao.Site.Helper.html">Helper<span></span></a>
+						<ul>
+				<li><a href="namespace-Neolao.Site.Helper.Controller.html">Controller</a>
+						</li>
+				<li><a href="namespace-Neolao.Site.Helper.View.html">View</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-Neolao.Site.Router.html">Router</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Neolao.Util.html">Util</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Neolao.Site.Router.RouteAbstract.html">RouteAbstract</a></li>
+				<li><a href="class-Neolao.Site.Router.RouteRegexp.html">RouteRegexp</a></li>
+				<li><a href="class-Neolao.Site.Router.RouteStandard.html">RouteStandard</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li class="active"><a href="class-Neolao.Site.Router.RouteInterface.html">RouteInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Neolao.Site.Router.html" title="Summary of Neolao\Site\Router"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Interface RouteInterface</h1>
+
+
+	<div class="description">
+	
+<p>Route interface</p>
+
+	</div>
+
+
+
+
+
+	<div>
+		<h4>Direct known implementers</h4>
+			<a href="class-Neolao.Site.Router.RouteRegexp.html">Neolao\Site\Router\RouteRegexp</a>, 
+			<a href="class-Neolao.Site.Router.RouteStandard.html">Neolao\Site\Router\RouteStandard</a>
+	</div>
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Neolao.html">Neolao</a>\<a href="namespace-Neolao.Site.html">Site</a>\<a href="namespace-Neolao.Site.Router.html">Router</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Neolao.Site.Router.RouteInterface.html#6-33" title="Go to source code">Neolao/Site/Router/RouteInterface.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="configure" id="_configure">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_configure">#</a>
+		<code><a href="source-class-Neolao.Site.Router.RouteInterface.html#11-16" title="Go to source code">configure</a>( <span>array <var>$parameters</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Configure the route</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Configure the route</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters Parameters</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="handleRequest" id="_handleRequest">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_handleRequest">#</a>
+		<code><a href="source-class-Neolao.Site.Router.RouteInterface.html#18-24" title="Go to source code">handleRequest</a>( <span><code><a href="class-Neolao.Site.Request.html">Neolao\Site\Request</a></code> <var>$request</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Find the route based on the request</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Find the route based on the request</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$request</var></dt>
+					<dd><code><code><a href="class-Neolao.Site.Request.html">Neolao\Site\Request</a></code></code><br>$request Request instance</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>true if the request is updated and matches the route, false otherwise<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="reverse" id="_reverse">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_reverse">#</a>
+		<code><a href="source-class-Neolao.Site.Router.RouteInterface.html#26-32" title="Go to source code">reverse</a>( <span>array <var>$parameters</var> = []</span> )</code>
+
+		<div class="description short">
+			
+<p>Reverse a route</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Reverse a route</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters Parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Reverse path<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

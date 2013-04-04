@@ -1,9 +1,5 @@
 <?php
-/**
- * @package Neolao\Site
- */
 namespace Neolao\Site;
-
 
 use \Neolao\Util\Path;
 

@@ -1,9 +1,5 @@
 <?php
-/**
- * @package Neolao\Site\Helper\Controller
- */
 namespace Neolao\Site\Helper\Controller;
-
 
 use \Neolao\Site\Controller;
 use \Neolao\Site\Helper\ControllerInterface;

@@ -1,7 +1,4 @@
 <?php
-/**
- * @package Neolao\Site\Helper\View
- */
 namespace Neolao\Site\Helper\View;
 
 use \Neolao\Logger;
@@ -14,16 +11,16 @@ use \JShrink\Minifier;
  *
  *
  * Example 1: Get the url of the original file
- *
+ * <pre>
  * $helper              = new Stylesheet();
  * $helper->basePath    = '/path/to/style';
  * $helper->baseUrl     = 'http://site.tld/style';
  * echo $helper->getFileUrl('general.js');                          // http://site.tld/style/javascripts/general.js
  * echo $helper->getFileUrl('lib/foo/bar.js');                      // http://site.tld/style/javascripts/lib/foo/bar.js
- *
+ * </pre>
  *
  * Example 2: Get the url of the generated file
- *
+ * <pre>
  * $helper              = new Stylesheet();
  * $helper->basePath    = '/path/to/style';
  * $helper->baseUrl     = 'http://site.tld/style';
@@ -32,6 +29,7 @@ use \JShrink\Minifier;
  *                                                                  // based on /path/to/style/generated-js/general.version.txt
  * echo $helper->getFileUrl('lib/foo/bar.js');                      // http://site.tld/style/generated-js/lib/foo/bar.a75ca72342d875fb6d50b03e4a6dd5a4.js
  *                                                                  // based on /path/to/style/generated-js/lib/foo/bar.version.txt
+ * </pre>
  */
 class JavascriptHelper extends AbstractHelper
 {

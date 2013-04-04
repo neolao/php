@@ -1,9 +1,5 @@
 <?php
-/**
- * @package Neolao\Behavior
- */
 namespace Neolao\Behavior;
-
 
 /**
  * Objects that implement this interface are serializable to json format

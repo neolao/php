@@ -1,7 +1,4 @@
 <?php
-/**
- * @package Neolao\Site\Helper\View
- */
 namespace Neolao\Site\Helper\View;
 
 use \Neolao\Logger;

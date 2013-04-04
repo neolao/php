@@ -1,7 +1,4 @@
 <?php
-/**
- * @package Neolao\Site\Helper\Controller
- */
 namespace Neolao\Site\Helper\Controller;
 
 use \Neolao\I18n;

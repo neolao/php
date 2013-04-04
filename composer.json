@@ -14,10 +14,14 @@
     "require":
     {
         "php"                   : ">=5.4",
-        "atoum/atoum"           : "dev-master",
         "mustache/mustache"     : "2.1.*",
         "richthegeek/phpsass"   : "dev-master",
         "tedivm/jshrink"        : "*"
+    },
+    "require-dev":
+    {
+        "atoum/atoum"           : "dev-master",
+        "apigen/apigen"         : "*"
     },
     "autoload":
     {

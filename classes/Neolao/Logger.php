@@ -1,9 +1,5 @@
 <?php
-/**
- * @package Neolao
- */
 namespace Neolao;
-
 
 use \Neolao\Logger\ListenerInterface;
 

@@ -1,13 +1,11 @@
 <?php
-/**
- * @package Neolao\Util
- */
 namespace Neolao\Util;
 
 /**
  * Configuration with profiles
  *
  * Example of json file:
+ * <pre>
  * {
  *      "profile"   : "production",
  *      "myName"    : "unknown",
@@ -22,11 +20,14 @@ namespace Neolao\Util;
  *          }
  *      }
  * }
+ * </pre>
  *
  * PHP:
+ * <pre>
  * $config = new \Neolao\Util\Config();
  * $config->parseJson($jsonContent);
  * echo $config->myName; // A
+ * </pre>
  *
  */
 class Config
