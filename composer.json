@@ -14,7 +14,7 @@
     "require":
     {
         "php"                   : ">=5.4",
-        "mustache/mustache"     : "2.1.*",
+        "mustache/mustache"     : "2.*",
         "leafo/scssphp"         : "*",
         "tedivm/jshrink"        : "*"
     },

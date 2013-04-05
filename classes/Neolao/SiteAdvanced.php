@@ -247,6 +247,7 @@ class SiteAdvanced extends Site
         parent::_addControllerHelpers($controller);
 
         $controller->registerHelperClass('link', '\\Neolao\\Site\\Helper\\Controller\\LinkHelper');
+        $controller->registerHelperClass('getLogger', '\\Neolao\\Site\\Helper\\Controller\\LoggerHelper');
     }
 
     /**
