@@ -11,8 +11,7 @@ use \Neolao\Site\Request;
  * $config = [
  *      'pattern'       => '/account/:name/order/:orderId/pdf',
  *      'controller'    => 'foo',
- *      'action'        => 'bar',
- *      'reverse'       => '/account/%s/order/%d/pdf'
+ *      'action'        => 'bar'
  * ];
  * </pre>
  */
@@ -120,18 +119,15 @@ class RouteStandard extends RouteAbstract implements RouteInterface
     {
         $result = '';
 
-        // Match parameters with the reverse route
-        $map = [];
-        for ($index = 0; $index < $this->_variableCount; $index++) {
-            $name = $this->_variables[$index];
-            if (isset($parameters[$name])) {
-                $map[$index] = $parameters[$name];
+        // Build the reverse
+        $result = $this->_pattern;
+        foreach ($parameters as $name => $value) {
+            $key = ':' . $name;
+            if (strpos($result, $key) >= 0) {
+                $result = str_replace($key, $value, $result);
                 unset($parameters[$name]);
-            } else {
-                $map[$index] = '';
             }
         }
-        $result = vsprintf($this->_reverse, $map);
 
         // For the rest of parameters, add a query string
         $query = array_merge($parameters);
@@ -140,7 +136,6 @@ class RouteStandard extends RouteAbstract implements RouteInterface
         }
 
         return $result;
-
     }
 
     /**
