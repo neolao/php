@@ -42,8 +42,7 @@ class RouteStandard extends atoum\test
         $config = [
             'pattern'       => '/',
             'controller'    => 'foo',
-            'action'        => 'bar',
-            'reverse'       => '/'
+            'action'        => 'bar'
         ];
         $route->configure($config);
 
@@ -72,8 +71,7 @@ class RouteStandard extends atoum\test
         $config = [
             'pattern'       => '/a',
             'controller'    => 'foo',
-            'action'        => 'bar',
-            'reverse'       => '/b'
+            'action'        => 'bar'
         ];
         $route->configure($config);
 
@@ -104,8 +102,7 @@ class RouteStandard extends atoum\test
         $config = [
             'pattern'       => '/account/:name',
             'controller'    => 'foo',
-            'action'        => 'bar',
-            'reverse'       => '/account/%s'
+            'action'        => 'bar'
         ];
         $route->configure($config);
 
@@ -137,8 +134,7 @@ class RouteStandard extends atoum\test
         $config = [
             'pattern'       => '/account/:name/:section',
             'controller'    => 'foo',
-            'action'        => 'bar',
-            'reverse'       => '/account/%s/%s'
+            'action'        => 'bar'
         ];
         $route->configure($config);
 
@@ -171,8 +167,7 @@ class RouteStandard extends atoum\test
         $config = [
             'pattern'       => '/account/:name/order/:orderId/pdf',
             'controller'    => 'foo',
-            'action'        => 'bar',
-            'reverse'       => '/account/%s/order/%d/pdf'
+            'action'        => 'bar'
         ];
         $route->configure($config);
 
@@ -199,8 +194,7 @@ class RouteStandard extends atoum\test
         $config = [
             'pattern'       => '/',
             'controller'    => 'foo',
-            'action'        => 'bar',
-            'reverse'       => '/'
+            'action'        => 'bar'
         ];
         $route->configure($config);
 
@@ -223,8 +217,7 @@ class RouteStandard extends atoum\test
         $config = [
             'pattern'       => '/account/:name',
             'controller'    => 'foo',
-            'action'        => 'bar',
-            'reverse'       => '/account/%s'
+            'action'        => 'bar'
         ];
         $route->configure($config);
 
@@ -250,8 +243,7 @@ class RouteStandard extends atoum\test
         $config = [
             'pattern'       => '/account/:name/order/:orderId/pdf',
             'controller'    => 'foo',
-            'action'        => 'bar',
-            'reverse'       => '/account/%s/order/%d/pdf'
+            'action'        => 'bar'
         ];
         $route->configure($config);
 
