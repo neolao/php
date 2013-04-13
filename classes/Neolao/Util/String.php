@@ -6,6 +6,11 @@ namespace Neolao\Util;
  */
 class String
 {
+    /**
+     * Accents
+     *
+     * @var array
+     */
     public static $accents = array(
         'Š'=>'S', 'š'=>'s', 'Ð'=>'D', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 
         'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E', 'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 
@@ -59,5 +64,18 @@ class String
     public static function removeAccents($text)
     {
         return strtr($text, self::$accents);
+    }
+
+    /**
+     * Get the language from a locale string
+     *
+     * @param   string      $localeString       Locale string
+     * @return  string                          Language string
+     */
+    public static function getLanguage($localeString)
+    {
+        $array = explode('_', $localeString);
+
+        return array_shift($array);
     }
 }
