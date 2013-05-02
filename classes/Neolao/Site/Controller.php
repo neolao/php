@@ -4,6 +4,7 @@ namespace Neolao\Site;
 use \Neolao\Site;
 use \Neolao\Site\Request;
 use \Neolao\Site\Helper\ControllerInterface;
+use \Neolao\Site\Controller\Helpers;
 
 /**
  * Abstract controller
@@ -25,12 +26,12 @@ abstract class Controller
     /**
      * Helper list
      *
-     * @var array
+     * @var \Neolao\Site\Controller\Helpers
      */
     protected $_helpers;
-    
-    
-    
+
+
+
     /**
      * Constructor
      * 
@@ -38,8 +39,8 @@ abstract class Controller
      */
     public function __construct(Site $site)
     {
-        $this->_helpers = array();
         $this->_site = $site;
+        $this->_helpers = new Helpers($this);
     }
 
     /**
@@ -50,8 +51,7 @@ abstract class Controller
      */
     public function registerHelper($key, ControllerInterface $helper)
     {
-        $helper->setController($this);
-        $this->_helpers[$key] = $helper;
+        $this->_helpers->registerHelper($key, $helper);
     }
 
     /**
@@ -63,71 +63,33 @@ abstract class Controller
      */
     public function registerHelperClass($key, $helperClass, $parameters = array())
     {
-        $this->_helpers[$key] = array(
-            'className'     => $helperClass,
-            'parameters'    => $parameters
-        );
+        $this->_helpers->registerHelperClass($key, $helperClass, $parameters);
     }
 
-    /**
-     * Magic method for functions
-     *
-     * @param   string      $name           Function name
-     * @param   array       $arguments      Arguments
-     * @return  mixed                       The result
-     */
-    public function __call($name, $arguments)
-    {
-        // Call a helper
-        if (isset($this->_helpers[$name])) {
-            $helper = $this->_helpers[$name];
-
-            // Check if the helper needs to create an instance
-            if ($helper instanceof ControllerInterface === false) {
-                $helperClassName    = $helper['className'];
-                $helperParameters   = $helper['parameters'];
-                $helper             = new $helperClassName();
-                if ($helper instanceof ControllerInterface) {
-                    $helper->setController($this);
-                    foreach ($helperParameters as $helperParameterName => $helperParameterValue) {
-                        $helper->$helperParameterName = $helperParameterValue;
-                    }
-                    $this->_helpers[$name] = $helper;
-                }
-            }
-
-            // Call the main method
-            return call_user_func_array(
-                array($helper, 'main'),
-                $arguments
-            );
-        }
-    }
-    
     /**
      * Site instance
      * 
-     * @var Site
+     * @var \Neolao\Site
      */
     public function get_site()
     {
         return $this->_site;
     }
-    
+
     /**
      * View instance
      * 
-     * @var Core_View
+     * @var \Neolao\Site\View
      */
     public function get_view()
     {
         return $this->site->view;
     }
-    
+
     /**
      * Request instance
      * 
-     * @var Cpre_Request
+     * @var \Neolao\Site\Request
      */
     public function get_request()
     {
@@ -135,14 +97,24 @@ abstract class Controller
     }
 
     /**
+     * Helpers container
+     *
+     * @var \Neolao\Site\Controller\Helpers
+     */
+    public function get_helpers()
+    {
+        return $this->_helpers;
+    }
+
+    /**
      * Dispatch request
-     * 
+     *
      * @param   \Neolao\Site\Request    $request    HTTP Request
      */
     public function dispatch(Request $request)
     {
         $actionName = $request->actionName;
-        
+
         // Call shortcut action
         $actionMethodName = $actionName.'Action';
         if (!method_exists($this, $actionMethodName)) {
@@ -150,7 +122,7 @@ abstract class Controller
         }
         $this->$actionMethodName();
     }
-    
+
     /**
      * Forward to another controller
      * 
@@ -161,7 +133,7 @@ abstract class Controller
     {
         $this->site->display($controllerName, $actionName);
     }
-    
+
     /**
      * Redirect to a page
      *
